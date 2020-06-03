@@ -40,6 +40,6 @@
 		}	
    }
 
-  var_dump(json_encode($data));
+  var_dump($data);
 
 ?>
