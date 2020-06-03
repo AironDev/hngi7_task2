@@ -1,7 +1,9 @@
 <?php
+	// will hold all output from various scripts
 	$data = [];
 	$script_dir = 'scripts';
 	 foreach (glob($script_dir. "/*.*") as $myfiles) {
+	 // holds all the files inside the script dir
       $files[] = $myfiles;
    }
 
@@ -10,7 +12,7 @@
    			// echo "executing " . $value . "...";
    			exec( 'node '.$value, $output, $status );
 			if($output == null){
-				echo "\n Failed \n \n";
+				echo $value ." Failed";
 			}else{
 				$data[$index] = $output[0];
 				unset($output);
@@ -19,17 +21,17 @@
    			// echo "executing " . $value . "...";
    			exec( 'php '. $value, $output, $status );
 			if($output == null){
-				echo "\n Failed \n \n";
+				echo $value ." Failed";
 			}	
 			else{
-				$data[$index] = json_encode($output[0]);
+				$data[$index] = $output[0];
 				unset($output);
 			}
 		}elseif (substr($value, -3) == '.py') {
 			// echo "executing " . $value . "...";
    			exec( 'python '. $value, $output, $status );
 			if($output == null){
-				echo "\n Failed \n \n";
+				echo $value ." Failed";
 			}	
 			else{
 				$data[$index] = $output[0];;
