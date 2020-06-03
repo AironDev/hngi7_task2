@@ -12,9 +12,16 @@
    			// echo "executing " . $value . "...";
    			exec( 'node '.$value, $output, $status );
 			if($output == null){
-				echo $value ." Failed";
+				$member = json_decode($output[0]);
+				$member->status = "passed";
+				$member = json_encode($member);
+				$data[$index] = $member;
+				unset($output);
 			}else{
-				$data[$index] = $output[0];
+				$member = json_decode($output[0]);
+				$member->status = "passed";
+				$member = json_encode($member);
+				$data[$index] = $member;
 				unset($output);
 			}	
    		}elseif (substr($value, -4) == '.php') {
@@ -24,7 +31,10 @@
 				echo $value ." Failed";
 			}	
 			else{
-				$data[$index] = $output[0];
+				$member = json_decode($output[0]);
+				$member->status = "passed";
+				$member = json_encode($member);
+				$data[$index] = $member;
 				unset($output);
 			}
 		}elseif (substr($value, -3) == '.py') {
@@ -34,7 +44,10 @@
 				echo $value ." Failed";
 			}	
 			else{
-				$data[$index] = $output[0];;
+				$member = json_decode($output[0]);
+				$member->status = "passed";
+				$member = json_encode($member);
+				$data[$index] = $member;
 				unset($output);
 			}
 		}	

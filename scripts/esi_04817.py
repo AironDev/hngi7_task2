@@ -1,11 +1,11 @@
 import json
 esi_info = {
-	'file': "esi_04817.js",
+	'file': "esi_04817.py",
 	'name': "Esi Dan", 
-	'message': 'Hello World, this  is Esi FiDannch with HNGi7 ID  HNG-04817 using Javascript for stage 2 task',
+	'output': 'Hello World, this  is Esi FiDannch with HNGi7 ID  HNG-04817 using Python for stage 2 task',
 	'id': "HNG-04817",
 	'email': "esiFiDannch@mail.com",
-	'language': "Javascript", 
+	'language': "Pyhton", 
 	'status': ""
 }
 
