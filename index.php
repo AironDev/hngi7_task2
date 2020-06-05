@@ -1,7 +1,9 @@
 <?php
+	// will hold all output from various scripts
 	$data = [];
 	$script_dir = 'scripts';
 	 foreach (glob($script_dir. "/*.*") as $myfiles) {
+	 // holds all the files inside the script dir
       $files[] = $myfiles;
    }
 
@@ -10,34 +12,47 @@
    			// echo "executing " . $value . "...";
    			exec( 'node '.$value, $output, $status );
 			if($output == null){
-				echo "\n Failed \n \n";
+				$member = json_decode($output[0]);
+				$member->status = "passed";
+				$member = json_encode($member);
+				$data[$index] = $member;
+				unset($output);
 			}else{
-				$data[$index] = $output[0];
+				$member = json_decode($output[0]);
+				$member->status = "passed";
+				$member = json_encode($member);
+				$data[$index] = $member;
 				unset($output);
 			}	
    		}elseif (substr($value, -4) == '.php') {
    			// echo "executing " . $value . "...";
    			exec( 'php '. $value, $output, $status );
 			if($output == null){
-				echo "\n Failed \n \n";
+				echo $value ." Failed";
 			}	
 			else{
-				$data[$index] = json_encode($output[0]);
+				$member = json_decode($output[0]);
+				$member->status = "passed";
+				$member = json_encode($member);
+				$data[$index] = $member;
 				unset($output);
 			}
 		}elseif (substr($value, -3) == '.py') {
 			// echo "executing " . $value . "...";
    			exec( 'python '. $value, $output, $status );
 			if($output == null){
-				echo "\n Failed \n \n";
+				echo $value ." Failed";
 			}	
 			else{
-				$data[$index] = $output[0];;
+				$member = json_decode($output[0]);
+				$member->status = "passed";
+				$member = json_encode($member);
+				$data[$index] = $member;
 				unset($output);
 			}
 		}	
    }
 
-  var_dump(json_encode($data));
+  var_dump($data);
 
 ?>
