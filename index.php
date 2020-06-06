@@ -19,7 +19,7 @@
    			// echo "executing " . $value . "...";
    			exec( 'node '.$value, $output, $status );
 			if($output == null){
-                $data[$index] = json_encode(['file' => $value, 'output' => 'Test failed please follow guidlines', 'status' => 'failed']);
+                $data[$index] = json_encode(['file' => $value, 'output' => 'Test failed please follow guidelines', 'status' => 'failed']);
 				unset($output);
 			}else{
 				$member = json_decode($output[0]);
@@ -32,7 +32,7 @@
    			// echo "executing " . $value . "...";
    			exec( 'php '. $value, $output, $status );
 			if($output == null){
-                $data[$index] = json_encode(['file' => $value, 'output' => 'Test failed please follow guidlines', 'status' => 'failed']);
+                $data[$index] = json_encode(['file' => $value, 'output' => 'Test failed please follow guidelines', 'status' => 'failed']);
 				unset($output);
 			}	
 			else{
@@ -46,7 +46,7 @@
 			// echo "executing " . $value . "...";
    			exec( 'python '. $value, $output, $status );
 			if($output == null){
-                $data[$index] = json_encode(['file' => $value, 'output' => 'Test failed please follow guidlines', 'status' => 'failed']);
+                $data[$index] = json_encode(['file' => $value, 'output' => 'Test failed please follow guidelines', 'status' => 'failed']);
 				unset($output);
 			}	
 			else{
@@ -60,26 +60,23 @@
    }
 
     $members = [];
-    $passedData = [];
-    $failedData = [];
+    $passedScript = [];
+    $failedScript = [];
 
   foreach($data as $key => $value){
 	  $members[$key] = json_decode($value, true); //this gives us an array
-      $passedData[$key] = json_decode($value, true); //this gives us an array
+     if($members[$key]['status'] === 'passed'){
+      	$passedScript[$key] = json_decode($value, true); //this gives us an array
+     }
   }
 // var_dump($members);
  
 
   if ($_SERVER['QUERY_STRING'] === 'json') {
     header('Content-Type: application/json');
-    foreach ($passedData as $key => $value) {
-        if ($value['status'] === 'passed') {
-           $pass[$key] = $value;
-        }
-      
-    }
-    $pass = json_encode($pass);
-    echo $pass;
+    $passedScript = array_values($passedScript);
+    $passedScript = json_encode( $passedScript);
+    echo $passedScript;
     exit;
 }
 
