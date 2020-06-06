@@ -7,6 +7,6 @@ const charley_info = {
 	email: "charles@mail.com",
 	language: "Javascript", 
 	status: ""
-} //Backend dev should have a way of modifying the status key after exec
+}
 const data = JSON.stringify(charley_info);
 console.log(data);

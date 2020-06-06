@@ -3,7 +3,7 @@
 	$favur_info = [
 		"file" => "favur_04819.php", 
 		"name" => "Favour Gimn",  
-		'message' => 'Hello World, this  is Esi FiDannch with HNGi7 ID  HNG-04819 using Javascript for stage 2 task', 
+		'output' => 'Hello World, this  is Esi FiDannch with HNGi7 ID  HNG-04819 using PHP for stage 2 task', 
 		'id' => "HNG-04819", 
 		'email' => "favurh@mail.com", 
 		'language' => "PHP", 
